@@ -12,7 +12,6 @@ function App() {
   const [prefPolygon, setPrefPolygon] = useState({})
   const [yyyymmdd, setYYYYMMDD] = useState("2021-01-10");
   const [dateArray, setDateArray] = useState([])
-  const [dateSliderValue, setDateSliderValue] = useState(0)
   const [viewState, setViewState] = useState({
     longitude: 135,
     latitude: 38,
@@ -27,16 +26,22 @@ function App() {
     wireframe: true,
     filled: true,
     stroked: true,
-    opacity: 0.8,
+    opacity: 1.0,
     pickable: true,
     filled: true,
     extruded: true,
     lineWidthScale: 20,
     lineWidthMinPixels: 2,
-    getFillColor: [240, 68, 47, 180],
+    getFillColor: f => [240, 68, 47, perDayData[yyyymmdd][f.properties.name]['per_day'] / 2],
     getRadius: 100,
     getLineWidth: 1,
-    getElevation: f => perDayData[yyyymmdd][f.properties.name]['per_day'] * 100
+    getLineColor: f => [240, 68, 47, perDayData[yyyymmdd][f.properties.name]['per_day'] / 2],
+    getElevation: f => perDayData[yyyymmdd][f.properties.name]['per_day']*200,
+    updateTriggers: {
+      getFillColor: { yyyymmdd },
+      getLineColor: { yyyymmdd },
+      getElevation: { yyyymmdd }
+    },
   });
 
   useEffect(() => {
@@ -46,9 +51,8 @@ function App() {
       console.log(dayArray)
       setPerDayData(dayData)
       setDateArray(dayArray)
-      setDateSliderValue(0)
       setYYYYMMDD(dayArray[0])
-      
+
       const polygonData = await loadPrefPolygon();
       setPrefPolygon(polygonData)
     }
@@ -72,38 +76,30 @@ function App() {
           height: "100%",
         }}
       >
-        <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+        <StaticMap
+          mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+          mapStyle="mapbox://styles/natsunotsukuda/cknluz9sx1ovb17pd5et6hg4y"
+        />
       </DeckGL>
       <Slider
-        defaultValue={dateArray.length-1}
+        defaultValue={dateArray.length - 1}
         ValueLabelComponent={props => ValueLabelComponent(props, yyyymmdd)}
         valueLabelDisplay="on"
         step={1}
         marks
         min={0}
-        max={dateArray.length-1}
+        max={dateArray.length - 1}
         style={{
           position: "absolute",
           bottom: "25px",
           width: "90vw",
           marginLeft: "5vw"
         }}
-        onChange={(e, v)=>setYYYYMMDD(dateArray[v])}
+        onChange={(e, v) => {
+          console.log(dateArray[v])
+          setYYYYMMDD(dateArray[v])
+        }}
       />
-      {/*<Slider
-          value={dateSliderValue}
-          aria-labelledby="discrete-slider"
-          ValueLabelComponent={props => ValueLabelComponent(props, yyyymmdd)}
-          valueLabelDisplay="on"
-          step={1}
-          marks
-          min={0}
-          max={(dateArray).length-1}
-          onChange={value=>{
-            setYYYYMMDD(dateArray[value])
-          }}
-          style={{bottom: 10, position: 'absolute', right: 10, left: 10}}
-        />*/}
     </div>
   );
 }
