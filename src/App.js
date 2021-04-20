@@ -1,4 +1,4 @@
-import "./App.css";
+import classes from "./App.module.css";
 import { useEffect, useState } from "react";
 import DeckGL from "@deck.gl/react";
 import { StaticMap } from 'react-map-gl';
@@ -28,7 +28,6 @@ function App() {
     stroked: true,
     opacity: 1.0,
     pickable: true,
-    filled: true,
     extruded: true,
     lineWidthScale: 20,
     lineWidthMinPixels: 2,
@@ -36,7 +35,7 @@ function App() {
     getRadius: 100,
     getLineWidth: 1,
     getLineColor: f => [240, 68, 47, perDayData[yyyymmdd][f.properties.name]['per_day'] / 2],
-    getElevation: f => perDayData[yyyymmdd][f.properties.name]['per_day']*200,
+    getElevation: f => perDayData[yyyymmdd][f.properties.name]['per_day'] * 200,
     updateTriggers: {
       getFillColor: { yyyymmdd },
       getLineColor: { yyyymmdd },
@@ -60,46 +59,40 @@ function App() {
     return () => console.log("unmounting...");
   }, []);
   return (
-    <div style={{
-      height: "100vh",
-      width: "100vw",
-      display: "flex"
-    }}
+    <div
+      className={classes.App}
     >
-      <DeckGL
-        layers={[geoLayer]}
-        initialViewState={viewState}
-        controller={true}
-        style={{
-          backgroundColor: "white",
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <StaticMap
-          mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
-          mapStyle="mapbox://styles/natsunotsukuda/cknluz9sx1ovb17pd5et6hg4y"
+      <div className={classes.mapContainer}>
+        <DeckGL
+          layers={[geoLayer]}
+          initialViewState={viewState}
+          controller={true}
+        >
+          <StaticMap
+            mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+            mapStyle="mapbox://styles/natsunotsukuda/cknluz9sx1ovb17pd5et6hg4y"
+          />
+        </DeckGL>
+        <Slider
+          defaultValue={dateArray.length - 1}
+          ValueLabelComponent={props => ValueLabelComponent(props, yyyymmdd)}
+          valueLabelDisplay="on"
+          step={1}
+          marks
+          min={0}
+          max={dateArray.length - 1}
+          style={{
+            position: "absolute",
+            bottom: "25px",
+            width: "90vw",
+            marginLeft: "5vw"
+          }}
+          onChange={(e, v) => {
+            console.log(dateArray[v])
+            setYYYYMMDD(dateArray[v])
+          }}
         />
-      </DeckGL>
-      <Slider
-        defaultValue={dateArray.length - 1}
-        ValueLabelComponent={props => ValueLabelComponent(props, yyyymmdd)}
-        valueLabelDisplay="on"
-        step={1}
-        marks
-        min={0}
-        max={dateArray.length - 1}
-        style={{
-          position: "absolute",
-          bottom: "25px",
-          width: "90vw",
-          marginLeft: "5vw"
-        }}
-        onChange={(e, v) => {
-          console.log(dateArray[v])
-          setYYYYMMDD(dateArray[v])
-        }}
-      />
+      </div>
     </div>
   );
 }
