@@ -12,3 +12,10 @@
   flex: 2;
   position: relative;
 }
+
+.slider {
+  background-color: white;
+  position: absolute;
+  width: 100px;
+  bottom: 10px;
+}

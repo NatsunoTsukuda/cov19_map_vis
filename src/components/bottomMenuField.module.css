@@ -1,0 +1,31 @@
+.bottomMenuField {
+  width: 95%;
+  height: 60px;
+  position: absolute;
+  bottom: 35px;
+  margin-left: 2.5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.slider {
+    color: darkturquoise;
+}
+
+.group{
+    align-self: center;
+    color: darkturquoise;
+    border-color: darkturquoise;
+}
+
+.button{
+    color: darkturquoise;
+    border-color: darkturquoise;
+    width: 40px;
+    padding-left: 10px;
+}
+
+.icon {
+    color: darkturquoise;
+    border-color: darkturquoise;
+}

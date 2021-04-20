@@ -6,6 +6,7 @@ import { GeoJsonLayer } from "@deck.gl/layers";
 import { Slider, Tooltip } from '@material-ui/core';
 import { MenuField } from "./components/menuField";
 import { GraphArea } from "./components/graphArea";
+import { BottomMenuField } from "./components/bottomMenuField"
 
 const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibmF0c3Vub3RzdWt1ZGEiLCJhIjoiY2tua2l1ZzB0MGJqaDJucDNqYnd2MmVlZyJ9.n2deVJQiKF_O3D8TGX8E9Q';
 
@@ -76,22 +77,10 @@ function App() {
           />
         </DeckGL>
         <MenuField />
-        <Slider
+        <BottomMenuField
           defaultValue={dateArray.length - 1}
-          ValueLabelComponent={props => ValueLabelComponent(props, yyyymmdd)}
-          valueLabelDisplay="on"
-          step={1}
-          marks
-          min={0}
-          max={dateArray.length - 1}
-          style={{
-            position: "absolute",
-            bottom: "25px",
-            width: "90%",
-            marginLeft: "5vw"
-          }}
-          onChange={(e, v) => {
-            console.log(dateArray[v])
+          date={yyyymmdd}
+          onSliderChange={(e, v) => {
             setYYYYMMDD(dateArray[v])
           }}
         />
@@ -126,15 +115,6 @@ async function loadPrefPolygon() {
       return polyData
     });
   return { type: "FeatureCollection", features: jsonData };
-}
-
-function ValueLabelComponent(props, date) {
-  const { children, open } = props;
-  return (
-    <Tooltip open={open} enterTouchDelay={0} placement="top" title={date}>
-      {children}
-    </Tooltip>
-  );
 }
 
 export default App;
