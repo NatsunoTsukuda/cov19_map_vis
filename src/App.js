@@ -4,6 +4,7 @@ import DeckGL from "@deck.gl/react";
 import { StaticMap } from 'react-map-gl';
 import { GeoJsonLayer } from "@deck.gl/layers";
 import { Slider, Tooltip } from '@material-ui/core';
+import { MenuField } from "./components/menuField"
 
 const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibmF0c3Vub3RzdWt1ZGEiLCJhIjoiY2tua2l1ZzB0MGJqaDJucDNqYnd2MmVlZyJ9.n2deVJQiKF_O3D8TGX8E9Q';
 
@@ -73,6 +74,7 @@ function App() {
             mapStyle="mapbox://styles/natsunotsukuda/cknluz9sx1ovb17pd5et6hg4y"
           />
         </DeckGL>
+        <MenuField />
         <Slider
           defaultValue={dateArray.length - 1}
           ValueLabelComponent={props => ValueLabelComponent(props, yyyymmdd)}
@@ -125,19 +127,12 @@ async function loadPrefPolygon() {
 }
 
 function ValueLabelComponent(props, date) {
-  const { children, open, value } = props;
+  const { children, open } = props;
   return (
     <Tooltip open={open} enterTouchDelay={0} placement="top" title={date}>
       {children}
     </Tooltip>
   );
-}
-
-function getHeight(data) {
-}
-
-function getColor(data) {
-
 }
 
 export default App;

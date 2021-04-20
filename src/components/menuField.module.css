@@ -1,0 +1,8 @@
+.field {
+  background-color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  height: 75%;
+  width: 15%;
+}
