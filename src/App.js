@@ -4,7 +4,8 @@ import DeckGL from "@deck.gl/react";
 import { StaticMap } from 'react-map-gl';
 import { GeoJsonLayer } from "@deck.gl/layers";
 import { Slider, Tooltip } from '@material-ui/core';
-import { MenuField } from "./components/menuField"
+import { MenuField } from "./components/menuField";
+import { GraphArea } from "./components/graphArea";
 
 const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibmF0c3Vub3RzdWt1ZGEiLCJhIjoiY2tua2l1ZzB0MGJqaDJucDNqYnd2MmVlZyJ9.n2deVJQiKF_O3D8TGX8E9Q';
 
@@ -86,7 +87,7 @@ function App() {
           style={{
             position: "absolute",
             bottom: "25px",
-            width: "90vw",
+            width: "90%",
             marginLeft: "5vw"
           }}
           onChange={(e, v) => {
@@ -95,6 +96,7 @@ function App() {
           }}
         />
       </div>
+      <GraphArea />
     </div>
   );
 }
