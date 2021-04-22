@@ -80,8 +80,11 @@ function App() {
         <BottomMenuField
           defaultValue={dateArray.length - 1}
           date={yyyymmdd}
-          onSliderChange={(e, v) => {
+          original_index={dateArray.indexOf(yyyymmdd)}
+          date_length={dateArray.length}
+          onSliderChange={(v) => {
             setYYYYMMDD(dateArray[v])
+            console.log("slider change")
           }}
         />
       </div>
