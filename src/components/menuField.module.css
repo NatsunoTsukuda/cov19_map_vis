@@ -1,8 +1,13 @@
 .field {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.6);
   position: absolute;
   right: 5px;
   top: 5px;
   height: 75%;
-  width: 15%;
+  width: 210px;
+}
+
+.column{
+  margin-bottom: 10px;
+  padding: 5px;
 }

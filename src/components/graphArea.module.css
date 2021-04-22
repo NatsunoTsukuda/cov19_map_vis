@@ -2,4 +2,12 @@
     flex: 1;
     background-color: white;
     margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.graph{
+    flex: 1;
 }
