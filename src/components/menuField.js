@@ -1,5 +1,21 @@
 import classes from "./menuField.module.css";
 
+const pref_list = [
+  "北海道",
+  "青森県",
+  "山形県",
+  "岩手県",
+  "新潟県",
+  "宮城県",
+  "福島県",
+  "茨城県",
+  "群馬県",
+  "栃木県",
+  "埼玉県",
+  "千葉県",
+  "東京都",
+];
+
 export function MenuField() {
   return (
     <div className={classes.field}>
@@ -25,32 +41,64 @@ export function MenuField() {
         </form>
       </div>
       <div className={classes.column}>
-        <div>Polygon Layer</div>
+      <div className={classes.columnTitle}>Polygon Layer</div>
+        <label className={classes.checkIsDisplaying}>
+          <input type="checkbox" name="color1" value="red" />
+          {"非表示"}
+        </label>
         <form>
           <label>
             <input type="checkbox" name="color1" value="red" checked />
             {"全国"}
           </label>
-          <br/>
+          <br />
           <label>
             <input type="checkbox" name="color1" value="red" />
             {"都道府県別"}
           </label>
         </form>
+        <div className={classes.selectPref}>
+          <form>
+            {pref_list.map((pref) => {
+              return (
+                <label className={classes.prefCheckbox}>
+                  <input type="checkbox" name="pref" value={pref} key={pref} />
+                  {pref}
+                </label>
+              );
+            })}
+          </form>
+        </div>
       </div>
       <div className={classes.column}>
-        <div>Arc Layer</div>
+        <div className={classes.columnTitle}>Arc Layer</div>
+        <label className={classes.checkIsDisplaying}>
+          <input type="checkbox" name="color1" value="red" />
+          {"非表示"}
+        </label>
         <form>
           <label>
             <input type="checkbox" name="color1" value="red" checked />
             {"全国"}
           </label>
-          <br/>
+          <br />
           <label>
             <input type="checkbox" name="color1" value="red" />
             {"都道府県別"}
           </label>
         </form>
+        <div className={classes.selectPref}>
+          <form>
+            {pref_list.map((pref) => {
+              return (
+                <label className={classes.prefCheckbox}>
+                  <input type="checkbox" name="pref" value={pref} key={pref} />
+                  {pref}
+                </label>
+              );
+            })}
+          </form>
+        </div>
       </div>
     </div>
   );

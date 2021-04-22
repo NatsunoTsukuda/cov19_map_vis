@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import DeckGL from "@deck.gl/react";
 import { StaticMap } from "react-map-gl";
 import { GeoJsonLayer } from "@deck.gl/layers";
-import { Slider, Tooltip } from "@material-ui/core";
 import { MenuField } from "./components/menuField";
 import { GraphArea } from "./components/graphArea";
 import { BottomMenuField } from "./components/bottomMenuField";
