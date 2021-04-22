@@ -9,6 +9,7 @@ const sliderRef = createRef(null);
 
 export function BottomMenuField(props) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [intervalID, setIntervalID] = useState(0);
 
   return (
     <div className={classes.bottomMenuField}>
@@ -32,13 +33,16 @@ export function BottomMenuField(props) {
           startIcon={<PlayArrowIcon className={classes.icon} />}
           style={{ borderColor: "darkturquoise" }}
           onClick={() => {
-            dataPlaying(
-              !isPlaying,
-              props.onSliderChange,
-              props.original_index,
-              props.date_length
-            );
-            setIsPlaying(!isPlaying);
+            if (!isPlaying) {
+              setIntervalID(
+                dataPlaying(
+                  props.onSliderChange,
+                  props.original_index,
+                  props.date_length
+                )
+              );
+              setIsPlaying(true)
+            }
           }}
         />
         <Button
@@ -46,13 +50,8 @@ export function BottomMenuField(props) {
           className={classes.button}
           startIcon={<PauseIcon className={classes.icon} />}
           onClick={() => {
-            dataPlaying(
-              false,
-              props.onSliderChange,
-              props.original_index,
-              props.date_length
-            );
-            setIsPlaying(false);
+            clearInterval(intervalID);
+            setIsPlaying(false)
           }}
         />
         <Button
@@ -60,13 +59,9 @@ export function BottomMenuField(props) {
           className={classes.button}
           startIcon={<SkipPreviousIcon className={classes.icon} />}
           onClick={() => {
-            dataPlaying(
-              false,
-              props.onSliderChange,
-              props.original_index,
-              props.date_length
-            );
-            setIsPlaying(false);
+            clearInterval(intervalID);
+            props.onSliderChange(0);
+            setIsPlaying(false)
           }}
         />
       </ButtonGroup>
@@ -83,18 +78,14 @@ function ValueLabelComponent(props, date) {
   );
 }
 
-function dataPlaying(isPlaying, onSliderChange, original_index, length) {
+function dataPlaying(onSliderChange, original_index, length) {
   var index = original_index;
-  var intervalID;
-  if (isPlaying) {
-    intervalID = setInterval(function () {
-      onSliderChange(index);
-      index++;
-    }, 100);
-    if (!isPlaying || index === length) {
-      console.log("pause", intervalID);
+  var intervalID = setInterval(function () {
+    if (index === length - 1) {
       clearInterval(intervalID);
     }
-  }
-  console.log(intervalID);
+    onSliderChange(index);
+    index++;
+  }, 100);
+  return intervalID;
 }
