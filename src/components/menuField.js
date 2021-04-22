@@ -20,32 +20,33 @@ export function MenuField() {
   return (
     <div className={classes.field}>
       <div className={classes.column}>
-        <div>表示データ</div>
-        <form>
-          <select>
-            <option>1日の陽性者数</option>
-            <option>1日の10万人あたり陽性者数</option>
-            <option>1日の死亡者数</option>
-            <option>1日の10万人あたり死亡者数</option>
-          </select>
-        </form>
-      </div>
-      <div className={classes.column}>
-        <div>比較先</div>
-        <form>
-          <select>
-            <option>当日</option>
-            <option>前日</option>
-            <option>前週</option>
-          </select>
-        </form>
-      </div>
-      <div className={classes.column}>
-      <div className={classes.columnTitle}>Polygon Layer</div>
+        <div className={classes.columnTitle}>Polygon Layer</div>
         <label className={classes.checkIsDisplaying}>
           <input type="checkbox" name="color1" value="red" />
           {"非表示"}
         </label>
+        <div className={classes.column}>
+          <div>表示データ</div>
+          <form>
+            <select>
+              <option>1日の陽性者数</option>
+              <option>1日の10万人あたり陽性者数</option>
+              <option>1日の死亡者数</option>
+              <option>1日の10万人あたり死亡者数</option>
+            </select>
+          </form>
+        </div>
+        <div className={classes.column}>
+          <div>比較先</div>
+          <form>
+            <select>
+              <option>当日</option>
+              <option>前日</option>
+              <option>前週</option>
+            </select>
+          </form>
+        </div>
+        <div>表示範囲</div>
         <form>
           <label>
             <input type="checkbox" name="color1" value="red" checked />
@@ -76,6 +77,28 @@ export function MenuField() {
           <input type="checkbox" name="color1" value="red" />
           {"非表示"}
         </label>
+        <div className={classes.column}>
+          <div>表示データ</div>
+          <form>
+            <select>
+              <option>1日の陽性者数</option>
+              <option>1日の10万人あたり陽性者数</option>
+              <option>1日の死亡者数</option>
+              <option>1日の10万人あたり死亡者数</option>
+            </select>
+          </form>
+        </div>
+        <div className={classes.column}>
+          <div>比較先</div>
+          <form>
+            <select>
+              <option>当日</option>
+              <option>前日</option>
+              <option>前週</option>
+            </select>
+          </form>
+        </div>
+        <div>表示範囲</div>
         <form>
           <label>
             <input type="checkbox" name="color1" value="red" checked />
