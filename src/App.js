@@ -6,6 +6,7 @@ import { GeoJsonLayer } from "@deck.gl/layers";
 import { MenuField } from "./components/menuField";
 import { GraphArea } from "./components/graphArea";
 import { BottomMenuField } from "./components/bottomMenuField";
+import { prefectures } from "./metadata";
 
 const MAPBOX_ACCESS_TOKEN =
   "pk.eyJ1IjoibmF0c3Vub3RzdWt1ZGEiLCJhIjoiY2tua2l1ZzB0MGJqaDJucDNqYnd2MmVlZyJ9.n2deVJQiKF_O3D8TGX8E9Q";
@@ -21,6 +22,12 @@ function App() {
     zoom: 4.6,
     pitch: 45,
   });
+  const [isDisplayPolygon, setIsDisplayPolygon] = useState(true);
+  const [isDisplayArc, setIsDisplayArc] = useState(true);
+  const [isZenkoku, setIsZenkoku] = useState(true);
+  const [isPrefsPolygon, setIsPrefsPolygon] = useState(Array(47).fill(false));
+  const [isZenkokuArc, setIsZenkokuArc] = useState(true);
+  const [isPrefsArc, setIsPrefsArc] = useState(Array(47).fill(false));
 
   //settings for deck.gl
   const geoLayer = new GeoJsonLayer({
@@ -85,7 +92,20 @@ function App() {
             mapStyle="mapbox://styles/natsunotsukuda/cknluz9sx1ovb17pd5et6hg4y"
           />
         </DeckGL>
-        <MenuField />
+        <MenuField
+          isZenkoku={isZenkoku}
+          isZenkokuArc={isZenkokuArc}
+          isPrefsPolygon={isPrefsPolygon}
+          isPrefsArc={isPrefsArc}
+          setIsDisplayPlygon={isDisplayPolygon}
+          isDiplayArc={isDisplayArc}
+          setIsPrefsPolygon={(v) => setIsPrefsPolygon(v)}
+          setIsPrefsArc={(v) => setIsPrefsArc(v)}
+          setIsDisplayPolygon={(v) => setIsDisplayPolygon(v)}
+          setIsDisplayArc={(v) => setIsDisplayArc(v)}
+          onIsZenkokuChange={(v) => setIsZenkoku(v)}
+          onIsZenkokuArcChange={(v) => setIsZenkokuArc(v)}
+        />
         <BottomMenuField
           defaultValue={dateArray.length - 1}
           date={yyyymmdd}
