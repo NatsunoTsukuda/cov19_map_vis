@@ -49,6 +49,7 @@ export function BottomMenuField(props) {
           variant="outlined"
           className={classes.button}
           startIcon={<PauseIcon className={classes.icon} />}
+          style={{ borderColor: "darkturquoise" }}
           onClick={() => {
             clearInterval(intervalID);
             setIsPlaying(false)
@@ -58,6 +59,7 @@ export function BottomMenuField(props) {
           variant="outlined"
           className={classes.button}
           startIcon={<SkipPreviousIcon className={classes.icon} />}
+          style={{ borderColor: "darkturquoise" }}
           onClick={() => {
             clearInterval(intervalID);
             props.onSliderChange(0);

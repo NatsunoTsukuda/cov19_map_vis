@@ -5,7 +5,41 @@
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-  padding: 15px;
+  padding: 40px 0px 0px 0px;
+}
+
+.header{
+  background-color: dimgray;
+  width: 100%;
+  height: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  padding-left: 10px;
+}
+
+.detail{
+  align-self: flex-end;
+  margin-bottom: 3px;
+  margin-left: 10px;
+  color: white;
+  font-size: 13px;
+}
+
+.title{
+  color: white;
+  font-size: 20px;
+  align-self: flex-end;
+  margin-bottom: 3px;
+}
+
+.update{
+  color: white;
+  font-size: 13px;
+  position: absolute;
+  right: 20px;
+  bottom: 3px;
 }
 
 .mapContainer {

@@ -81,6 +81,19 @@ function App() {
   }, []);
   return (
     <div className={classes.App}>
+      <div className={classes.header}>
+        <div className={classes.title}>
+          新型コロナウイルスデータ可視化サイト
+        </div>
+        <a
+          className={classes.detail}
+          href={"https://github.com/tktkbohshi/cov19_map_vis"}
+        >
+          レポジトリ（リンク）
+        </a>
+        <a className={classes.detail} href={"https://t.co/SnMd9HAYLv?amp=1"}>データ（リンク）</a>
+        <div className={classes.update}>update at 2021.4.24</div>
+      </div>
       <div className={classes.mapContainer}>
         <DeckGL
           layers={[geoLayer]}
@@ -117,7 +130,6 @@ function App() {
           }}
         />
       </div>
-      <GraphArea />
     </div>
   );
 }
