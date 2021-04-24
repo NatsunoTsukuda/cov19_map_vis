@@ -41,26 +41,49 @@ function App() {
     extruded: true,
     lineWidthScale: 20,
     lineWidthMinPixels: 2,
-    getFillColor: (f) => [
-      240,
-      68,
-      47,
-      perDayData[yyyymmdd][f.properties.name]["per_day"] / 2,
-    ],
+    getFillColor: (f) => {
+      if (
+        !isZenkoku &&
+        !isPrefsPolygon[prefectures.indexOf(f.properties.name)]
+      ) {
+        return [0, 0, 0, 0];
+      }
+      return [
+        perDayData[yyyymmdd][f.properties.name]["per_day"]/0.5,
+        122,
+        122,
+        255,
+      ];
+    },
     getRadius: 100,
     getLineWidth: 1,
-    getLineColor: (f) => [
-      240,
-      68,
-      47,
-      perDayData[yyyymmdd][f.properties.name]["per_day"] / 2,
-    ],
-    getElevation: (f) =>
-      perDayData[yyyymmdd][f.properties.name]["per_day"] * 200,
+    getLineColor: (f) => {
+      if (
+        !isZenkoku &&
+        !isPrefsPolygon[prefectures.indexOf(f.properties.name)]
+      ) {
+        return [0, 0, 0, 0];
+      }
+      return [
+        perDayData[yyyymmdd][f.properties.name]["per_day"]/0.5,
+        122,
+        122,
+        255,
+      ];
+    },
+    getElevation: (f) => {
+      if (
+        !isZenkoku &&
+        !isPrefsPolygon[prefectures.indexOf(f.properties.name)]
+      ) {
+        return 0;
+      }
+      return perDayData[yyyymmdd][f.properties.name]["per_day"] * 200;
+    },
     updateTriggers: {
-      getFillColor: { yyyymmdd },
-      getLineColor: { yyyymmdd },
-      getElevation: { yyyymmdd },
+      getFillColor: { yyyymmdd, isPrefsPolygon, isZenkoku },
+      getLineColor: { yyyymmdd, isPrefsPolygon, isZenkoku },
+      getElevation: { yyyymmdd, isPrefsPolygon, isZenkoku },
     },
   });
 
@@ -91,7 +114,6 @@ function App() {
         >
           レポジトリ（リンク）
         </a>
-        <a className={classes.detail} href={"https://t.co/SnMd9HAYLv?amp=1"}>データ（リンク）</a>
         <div className={classes.update}>update at 2021.4.24</div>
       </div>
       <div className={classes.mapContainer}>

@@ -29,8 +29,8 @@ export function MenuField(props) {
           <form>
             <select>
               <option>当日</option>
-              <option>前日</option>
-              <option>前週</option>
+              {/*<option>前日</option>
+              <option>前週</option>*/}
             </select>
           </form>
         </div>
@@ -99,7 +99,7 @@ export function MenuField(props) {
                             name="pref"
                             value={pref}
                             key={pref + "-polygon"}
-                            checked={props.isPrefsPolygon[i - 2]}
+                            checked={props.isPrefsPolygon[i - 1]}
                             onChange={(e) => {
                               const tmp = props.isPrefsPolygon.map((i) => {
                                 return i;
